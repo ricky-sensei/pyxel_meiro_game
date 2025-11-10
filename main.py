@@ -9,38 +9,48 @@ player = {
 }
 
 move = {
-    "left":0,
-    "right":0,
-    "up":0,
-    "down":0,
+    "LEFT":0,
+    "RIGHT":0,
+    "UP":0,
+    "DOWN":0,
 }
 
-def btn_pressed():
-    if move.values == [0, 0, 0, 0]:
-        for key_code in pyxel.pyxel.input_keys:
-            if key_code == pyxel.KEY_LEFT:
-                move["left"] = 16
-            if key_code == pyxel.KEY_RIGHT:
-                move["right"] = 16
-            if key_code == pyxel.KEY_UP:
-                move["up"] = 16
-            if key_code == pyxel.KEY_DOWN:
-                move["down"] = 16
-
+def update():
+    if list(move.values()) == [0, 0, 0, 0]:
+        if pyxel.btn(pyxel.KEY_LEFT):
+            print("left pressed")
+            move["LEFT"] = 16
+            
+        elif pyxel.btn(pyxel.KEY_RIGHT):
+            print("right pressed")
+            move["RIGHT"] = 16
+            
+        elif pyxel.btn(pyxel.KEY_UP):
+            print("up pressed")
+            move["UP"] = 16
+            
+        elif pyxel.btn(pyxel.KEY_DOWN):
+            print("down pressed")
+            move["DOWN"] = 16
+    
+    elif move["LEFT"] > 0:
+        player["position_x"] = player["position_x"] - 1
+        move["LEFT"] = move["LEFT"] - 1
+    elif move["RIGHT"] > 0:
+        player["position_x"] = player["position_x"] + 1
+        move["RIGHT"] = move["RIGHT"] - 1
+    elif move["UP"] > 0:
+        player["position_y"] = player["position_y"] - 1
+        move["UP"] = move["UP"] - 1
+    elif move["DOWN"] > 0:
+        player["position_y"] = player["position_y"] + 1
+        move["DOWN"] = move["DOWN"] - 1
+    else:
+        pass
 
 
 
     
-
-
-
-
-
-
-def update():
-    btn_pressed()
-    minusone()
-
 
     
 
